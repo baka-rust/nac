@@ -1,14 +1,10 @@
 #ifndef NAC_OSCILLATOR_H
 #define NAC_OSCILLATOR_H
 
+#include "constants.h"
+
 #include <stdint.h>
 #include <stdlib.h>
-
-#define SAMPLE_RATE   44100
-#define CHANNELS      1
-#define FRAME_SIZE    1024
-
-#define GLOBAL_GAIN   .5
 
 typedef struct nac_wavetable {
   uint8_t *data;

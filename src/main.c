@@ -1,3 +1,4 @@
+#include "constants.h"
 #include "nac_oscillator.h"
 
 #include <SDL2/SDL.h>
