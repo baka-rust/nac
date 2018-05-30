@@ -1,11 +1,12 @@
 #include "constants.h"
-#include "nac_oscillator.h"
+#include "wavetable.h"
+#include "oscillator.h"
 
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <stdio.h>
 
-nac_oscillator osc;
+oscillator *osc;
 
 void fill_audio(void* userdata, uint8_t* stream, int len) {
   if (len == 0) {
@@ -13,7 +14,7 @@ void fill_audio(void* userdata, uint8_t* stream, int len) {
   }
 
   for (int i = 0; i < len; i++) {
-    stream[i] = nac_oscillator_gen_sample(&osc) * GLOBAL_GAIN;
+    stream[i] = oscillator_gen_sample(osc) * GLOBAL_GAIN;
   }
 }
 
@@ -32,11 +33,14 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  nac_oscillator_init(&osc);
+  wavetable *wt = wavetable_init(128);
+  wavetable_fill_square(wt);
+
+  osc = oscillator_init(wt);
+
   SDL_PauseAudio(false);
   SDL_Delay(500);
   SDL_PauseAudio(true);
-  nac_oscillator_clean(&osc);
 
   return 0;
 
