@@ -10,8 +10,8 @@ oscillator* oscillator_init(wavetable *wt) {
 
 void oscillator_set_freq(oscillator *osc, float freq) {
   osc->freq = freq;
-  float samples_per_sec = (float)SAMPLE_RATE / osc->freq;
-  osc->table_step_rate = (float)osc->wt->length / samples_per_sec;
+  float samples_per_cycle = (float)SAMPLE_RATE / osc->freq;
+  osc->table_step_rate = (float)osc->wt->length / samples_per_cycle;
 }
 
 uint8_t oscillator_gen_sample(oscillator *osc) {

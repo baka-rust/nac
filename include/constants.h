@@ -5,6 +5,6 @@
 #define CHANNELS      1
 #define FRAME_SIZE    1024
 
-#define GLOBAL_GAIN   .5
+#define GLOBAL_GAIN   .25
 
 #endif /* CONSTANTS_H */
